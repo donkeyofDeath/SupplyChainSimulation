@@ -31,3 +31,6 @@ CUSTOMER_INITIAL_ORDERS = 4
 CUSTOMER_SUBSEQUENT_ORDERS = 8
 
 TARGET_STOCK = 12
+"""
+def calculateAmountToOrder()
+"""
