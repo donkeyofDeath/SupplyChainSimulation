@@ -23,6 +23,7 @@ class Customer:
         -------------------------------------------------------
         """
         self.totalBeerReceived = 0
+        self.ordersGivenThisWeek = 0
         return
     
     def RecieveFromRetailer(self, amountReceived):
@@ -55,6 +56,7 @@ class Customer:
             result = CUSTOMER_INITIAL_ORDERS
         else:
             result = CUSTOMER_SUBSEQUENT_ORDERS
+        self.ordersGivenThisWeek=result
         return result
     
     def GetBeerReceived(self):
@@ -67,3 +69,14 @@ class Customer:
         -------------------------------------------------------
         """
         return self.totalBeerReceived
+
+    def GetOrdersGivenThisWeek(self):
+        """
+        -------------------------------------------------------
+        Returns the orders given this weeek.
+        -------------------------------------------------------
+        Preconditions: None.
+        Postconditions: Returns totalBeerReceived
+        -------------------------------------------------------
+        """
+        return self.ordersGivenThisWeek

@@ -21,6 +21,7 @@ class SupplyChainStatistics:
         self.factoryCostsOverTime = []
         
         #Order statistics
+        self.customerOrdersOverTime = []
         self.retailerOrdersOverTime = []
         self.wholesalerOrdersOverTime = []
         self.distributorOrdersOverTime = []
@@ -34,6 +35,10 @@ class SupplyChainStatistics:
         
         return
     
+    def RecordCustomerOrders(self, customerOrdersThisWeek):
+        self.customerOrdersOverTime.append(customerOrdersThisWeek)
+        return
+
     def RecordRetailerOrders(self, retailerOrdersThisWeek):
         """
         -------------------------------------------------------
@@ -223,17 +228,15 @@ class SupplyChainStatistics:
         Postconditions: Outputs MatplotLib chart.
         -------------------------------------------------------
         """
-        plt.title("Cost Incurred Over Time")
-        plt.plot(self.retailerCostsOverTime, "r", label = "Retailer")
-        plt.plot(self.wholesalerCostsOverTime, "g", label = "Wholesaler")
-        plt.plot(self.distributorCostsOverTime, "b", label = "Distributor")
-        plt.plot(self.factoryCostsOverTime, "m", label="Factory")
+        plt.title("Angesammelte Kosten")
+        plt.plot(self.retailerCostsOverTime, "r", label = "Einzelhandel")
+        plt.plot(self.wholesalerCostsOverTime, "g", label = "Großhandel")
+        plt.plot(self.distributorCostsOverTime, "b", label = "Verteiler")
+        plt.plot(self.factoryCostsOverTime, "m", label="Brauerei")
         legend = plt.legend(loc='upper left', shadow=True)
-        plt.ylabel('Cost ($)')
-        plt.xlabel("Weeks")
-        plt.show()
-        
-        return
+        plt.ylabel("Kosten in €")
+        plt.xlabel("Wochennummer")
+        plt.grid(True)
     
     def PlotOrders(self):
         """
@@ -244,17 +247,17 @@ class SupplyChainStatistics:
         Postconditions: Outputs MatplotLib chart.
         -------------------------------------------------------
         """
-        plt.title("Orders Placed Over Time")
-        plt.plot(self.retailerOrdersOverTime, "r", label = "Retailer")
-        plt.plot(self.wholesalerOrdersOverTime, "g", label = "Wholesaler")
-        plt.plot(self.distributorOrdersOverTime, "b", label = "Distributor")
-        plt.plot(self.factoryOrdersOverTime, "m", label="Factory")
+        plt.title("Aufgegebenen Bestellungen")
+        plt.plot(self.customerOrdersOverTime, "orange", label = "Kunde")
+        plt.plot(self.retailerOrdersOverTime, "r", label = "Einzelhandel")
+        plt.plot(self.wholesalerOrdersOverTime, "g", label = "Großhandel")
+        plt.plot(self.distributorOrdersOverTime, "b", label = "Einzelhandel")
+        plt.plot(self.factoryOrdersOverTime, "m", label="Brauerei")
         legend = plt.legend(loc='upper left', shadow=True)
-        plt.ylabel('Orders')
-        plt.xlabel("Weeks")
-        plt.show()
-        
-        return
+        plt.ylabel("Bestellungen")
+        plt.xlabel("Wochennummer")
+        plt.grid(True)
+
     
     def PlotEffectiveInventory(self):
         """
@@ -265,16 +268,45 @@ class SupplyChainStatistics:
         Postconditions: Outputs MatplotLib chart.
         -------------------------------------------------------
         """
-        plt.title("Effective Inventory Over Time")
-        plt.plot(self.retailerEffectiveInventoryOverTime, "r", label = "Retailer")
-        plt.plot(self.wholesalerEffectiveInventoryOverTime, "g", label = "Wholesaler")
-        plt.plot(self.distributorEffectiveInventoryOverTime, "b", label = "Distributor")
-        plt.plot(self.factoryEffectiveInventoryOverTime, "m", label="Factory")
+        plt.title("Restinventar")
+        plt.plot(self.retailerEffectiveInventoryOverTime, "r", label = "Einzelhandel")
+        plt.plot(self.wholesalerEffectiveInventoryOverTime, "g", label = "Großhandel")
+        plt.plot(self.distributorEffectiveInventoryOverTime, "b", label = "Verteiler")
+        plt.plot(self.factoryEffectiveInventoryOverTime, "m", label="Brauerei")
         legend = plt.legend(loc='upper left', shadow=True)
-        plt.ylabel('Effective Inventory')
-        plt.xlabel("Weeks")
-        plt.show()
+        plt.ylabel("Restinventar in Bierkisten")
+        plt.xlabel("Wochennummer")
+        plt.grid(True)
+
+    def plotStatistics(self):
+        plt.figure(1)
+
+        plt.subplot(221)
+        self.PlotOrders()
+
+        plt.subplot(222)
+        self.PlotEffectiveInventory()
+
+        plt.subplot(223)
+        self.PlotCosts()
+
+        # Adjust the subplot layout, because the logit one may take more space
+        # than usual, due to y-tick labels like "1 - 10^{-3}"
+        plt.subplots_adjust(top=0.92, bottom=0.08, left=0.10, right=0.95, hspace=0.25,
+                            wspace=0.35)
         
-        return
-    
-    
+        #Makes the image full screen,use CRTL + f to get out
+        mng = plt.get_current_fig_manager()
+        mng.full_screen_toggle()
+        
+        #Use these statements when using Linux
+        """
+        mng = plt.get_current_fig_manager()
+        mng.resize(*mng.window.maxsize())
+        """
+        #When using Windows take the two statments below instead of the two above 
+        """
+        mng = plt.get_current_fig_manager()
+        mng.frame.Maximize(True)
+        """
+        plt.show()

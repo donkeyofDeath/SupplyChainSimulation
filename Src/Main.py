@@ -31,7 +31,7 @@ denote B's outgoingDeliveryQueue/A's incoming delivery queue.
 -------------------------------------------------------
 """
 wholesalerRetailerTopQueue = SupplyChainQueue(QUEUE_DELAY_WEEKS)
-wholesalerRetailerBottomQueue = SupplyChainQueue(QUEUE_DELAY_WEEKS1)
+wholesalerRetailerBottomQueue = SupplyChainQueue(QUEUE_DELAY_WEEKS)
 
 distributorWholesalerTopQueue = SupplyChainQueue(QUEUE_DELAY_WEEKS)
 distributorWholesalerBottomQueue = SupplyChainQueue(QUEUE_DELAY_WEEKS)
@@ -83,6 +83,8 @@ for thisWeek in range(0, WEEKS_TO_PLAY):
     
     print("--- Week {0} ---".format(thisWeek))
     
+    myStats.RecordCustomerOrders(theCustomer.GetOrdersGivenThisWeek())
+
     #Retailer takes turn, update stats
     myRetailer.TakeTurn(thisWeek)
     myStats.RecordRetailerCost(myRetailer.GetCostIncurred())
@@ -113,6 +115,9 @@ for thisWeek in range(0, WEEKS_TO_PLAY):
 
 print("--- Final Statistics ----")
 print("Beer received by customer: {0}".format(theCustomer.GetBeerReceived()))
+"""
 myStats.PlotCosts()
 myStats.PlotOrders()
 myStats.PlotEffectiveInventory()
+"""
+myStats.plotStatistics()
