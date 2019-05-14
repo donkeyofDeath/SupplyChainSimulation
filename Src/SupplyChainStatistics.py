@@ -35,6 +35,8 @@ class SupplyChainStatistics:
         self.distributorEffectiveInventoryOverTime = []
         self.factoryEffectiveInventoryOverTime = []
 
+        #self.recordAllCosts = []
+
         return
 
     def showMessage(self,head,messageToBeShown):
