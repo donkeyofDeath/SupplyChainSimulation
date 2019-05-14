@@ -52,7 +52,7 @@ class Customer:
             for all other weeks. 
         -------------------------------------------------------
         """
-        if weekNum <= 5:
+        if weekNum <= WEEK_TO_RAISE_ORDER +1:
             result = CUSTOMER_INITIAL_ORDERS
         else:
             result = CUSTOMER_SUBSEQUENT_ORDERS

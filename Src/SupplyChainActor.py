@@ -70,18 +70,8 @@ class SupplyChainActor:
             strategy.
         -------------------------------------------------------
         """
-
-        #First weeks are in equilibrium
-        if weekNum <= 4:
-            amountToOrder = 4
-        #After first few weeks, the actor chooses the order. We use "anchor and maintain" strategy.
-        else:
-            #We want to cover any out flows, we know that there are some orders in the pipeline.
-            amountToOrder = 0.5 * self.currentOrders
-            
-            if (TARGET_STOCK - self.currentStock) > 0:
-                amountToOrder += TARGET_STOCK - self.currentStock
-            
+        #calculateAmountToOrder can be found in Settings.py
+        amountToOrder=calculateAmountToOrder(self.currentOrders, self.currentStock, weekNum)
         self.outgoingOrdersQueue.pushEnvelope(amountToOrder)
         self.lastOrderQuantity = amountToOrder
         

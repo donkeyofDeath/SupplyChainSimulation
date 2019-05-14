@@ -7,7 +7,7 @@ Email:   tom@lamantia.mail.utoronto.ca
 Version: February 7th 2016
 -------------------------------------------------------
 """
-
+from Settings import *
 from SupplyChainActor import SupplyChainActor
 
 class Wholesaler(SupplyChainActor):
@@ -38,7 +38,7 @@ class Wholesaler(SupplyChainActor):
         self.receiveIncomingOrders()     #This also advances the queue!
         
         #PREPARE DELIVERY
-        if weekNum <= 4:
+        if weekNum <= WEEK_TO_RAISE_ORDER:
             self.placeOutgoingDelivery(4)
         else:
             self.placeOutgoingDelivery(self.calcBeerToDeliver())

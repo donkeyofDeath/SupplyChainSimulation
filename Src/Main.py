@@ -114,7 +114,7 @@ for thisWeek in range(0, WEEKS_TO_PLAY):
     print("Factory Complete")
 
 print("--- Final Statistics ----")
-print("Beer received by customer: {0}".format(theCustomer.getBeerReceived()))
+print("Beer received by customer: {0}".format(int(theCustomer.getBeerReceived())))
 """
 myStats.PlotCosts()
 myStats.PlotOrders()

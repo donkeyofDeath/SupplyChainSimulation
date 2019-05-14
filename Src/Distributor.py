@@ -8,6 +8,7 @@ Version: February 7th 2016
 -------------------------------------------------------
 """
 
+from Settings import *
 from SupplyChainActor import SupplyChainActor
 
 class Distributor(SupplyChainActor):
@@ -39,7 +40,7 @@ class Distributor(SupplyChainActor):
         self.receiveIncomingOrders()     #This also advances the queue!
         
         #PREPARE DELIVERY
-        if weekNum <= 4:
+        if weekNum <= WEEK_TO_RAISE_ORDER:
             self.placeOutgoingDelivery(4)
         else:
             self.placeOutgoingDelivery(self.calcBeerToDeliver())

@@ -8,6 +8,7 @@ Version: February 7th 2016
 -------------------------------------------------------
 """
 
+from Settings import *
 from Customer import Customer
 from SupplyChainActor import SupplyChainActor
 from SupplyChainQueue import SupplyChainQueue
@@ -73,7 +74,7 @@ class Retailer(SupplyChainActor):
         
         #CALCULATE AMOUNT TO BE SHIPPED, THEN SHIP IT
         #self.ShipOutgoingDeliveryToCustomer()
-        if weekNum <= 4:
+        if weekNum <= WEEK_TO_RAISE_ORDER:
             self.customer.recieveFromRetailer(4)
         else:
             self.customer.recieveFromRetailer(self.calcBeerToDeliver())

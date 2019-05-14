@@ -47,16 +47,8 @@ class Factory(SupplyChainActor):
             strategy.
         -------------------------------------------------------
         """
-        if weekNum <= 4:
-            amountToOrder = 4
-        #After first few weeks, the actor chooses the order. We use "anchor and maintain" strategy.
-        else:
-            #We want to cover any outflows
-            amountToOrder = 0.5 * self.currentOrders
-            
-            if (TARGET_STOCK - self.currentStock) > 0:
-                amountToOrder += TARGET_STOCK - self.currentStock
-            
+        #calculateAmountToOrder can be found in Settings.py
+        amountToOrder=calculateAmountToOrder(self.currentOrders, self.currentStock, weekNum) 
         self.BeerProductionDelayQueue.pushEnvelope(amountToOrder)
         self.lastOrderQuantity = amountToOrder
         
@@ -91,7 +83,7 @@ class Factory(SupplyChainActor):
         self.receiveIncomingOrders()     #This also advances the queue!
         
         #PREPARE DELIVERY
-        if weekNum <= 4:
+        if weekNum <= WEEK_TO_RAISE_ORDER:
             self.placeOutgoingDelivery(4)
         else:
             self.placeOutgoingDelivery(self.calcBeerToDeliver())
