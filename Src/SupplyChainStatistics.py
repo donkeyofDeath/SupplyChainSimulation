@@ -34,9 +34,30 @@ class SupplyChainStatistics:
         self.wholesalerEffectiveInventoryOverTime = []
         self.distributorEffectiveInventoryOverTime = []
         self.factoryEffectiveInventoryOverTime = []
-        
+
         return
-    
+
+    def showMessage(self,head,messageToBeShown):
+        #Shows a message box
+        root = tk.Tk()
+        root.withdraw()
+        messagebox.showinfo(head, messageToBeShown)
+
+    def makeImageFullscreen(self):
+        #Makes the image full screen,use CRTL + f to get out
+        mng = plt.get_current_fig_manager()
+        mng.full_screen_toggle()
+        #Use these statements when using Linux to maximize the Window
+        """
+        mng = plt.get_current_fig_manager()
+        mng.resize(*mng.window.maxsize())
+        """
+        #Use these statements when using Windows to maximize the Window
+        """
+        mng = plt.get_current_fig_manager()
+        mng.frame.Maximize(True)
+        """
+
     def recordCustomerOrders(self, customerOrdersThisWeek):
         self.customerOrdersOverTime.append(customerOrdersThisWeek)
         return
@@ -296,24 +317,9 @@ class SupplyChainStatistics:
         # than usual, due to y-tick labels like "1 - 10^{-3}"
         plt.subplots_adjust(top=0.92, bottom=0.08, left=0.10, right=0.95, hspace=0.25,
                             wspace=0.35)
-        
-        #Shows a message
-        root = tk.Tk()
-        root.withdraw()
-        messagebox.showinfo('User Info', 'Press "CRTL + F" to leave full screen mode')
 
-        #Makes the image full screen,use CRTL + f to get out
-        mng = plt.get_current_fig_manager()
-        mng.full_screen_toggle()
-        
-        #Use these statements when using Linux to maximize the Window
-        """
-        mng = plt.get_current_fig_manager()
-        mng.resize(*mng.window.maxsize())
-        """
-        #Use these statements when using Windows to maximize the Window
-        """
-        mng = plt.get_current_fig_manager()
-        mng.frame.Maximize(True)
-        """
+        self.showMessage('User info','Press "CRTL + F" to exit full screen mode')
+
+        self.makeImageFullscreen()
+
         plt.show()

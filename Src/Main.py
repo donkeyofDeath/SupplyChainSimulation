@@ -81,7 +81,7 @@ Main game-play!
 
 for thisWeek in range(0, WEEKS_TO_PLAY):
     
-    print("--- Week {0} ---".format(thisWeek))
+    #print("--- Week {0} ---".format(thisWeek))
     
     myStats.recordCustomerOrders(theCustomer.getOrdersGivenThisWeek())
 
@@ -90,28 +90,28 @@ for thisWeek in range(0, WEEKS_TO_PLAY):
     myStats.recordRetailerCost(myRetailer.getCostIncurred())
     myStats.recordRetailerOrders(myRetailer.getLastOrderQuantity())
     myStats.recordRetailerEffectiveInventory(myRetailer.calcEffectiveInventory())
-    print("Retailer Complete")
+    #print("Retailer Complete")
     
     #Wholesaler takes turn, update stats
     myWholesaler.takeTurn(thisWeek)
     myStats.recordWholesalerCost(myWholesaler.getCostIncurred())
     myStats.recordWholesalerOrders(myWholesaler.getLastOrderQuantity())
     myStats.recordWholesalerEffectiveInventory(myWholesaler.calcEffectiveInventory())
-    print("Wholesaler Complete")
+    #print("Wholesaler Complete")
     
     #Distributor takes turn, update stats
     myDistributor.takeTurn(thisWeek)
     myStats.recordDistributorCost(myDistributor.getCostIncurred())
     myStats.recordDistributorOrders(myDistributor.getLastOrderQuantity())
     myStats.recordDistributorEffectiveInventory(myDistributor.calcEffectiveInventory())
-    print("Distributor Complete")
+    #print("Distributor Complete")
     
     #Factory takes turn, update stats
     myFactory.takeTurn(thisWeek)
     myStats.recordFactoryCost(myFactory.getCostIncurred())
     myStats.recordFactoryOrders(myFactory.getLastOrderQuantity())
     myStats.recordFactoryEffectiveInventory(myFactory.calcEffectiveInventory())
-    print("Factory Complete")
+    #print("Factory Complete")
 
 print("--- Final Statistics ----")
 print("Beer received by customer: {0}".format(int(theCustomer.getBeerReceived())))
