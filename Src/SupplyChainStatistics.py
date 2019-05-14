@@ -7,8 +7,10 @@ Email:   tom@lamantia.mail.utoronto.ca
 Version: February 15th 2016
 -------------------------------------------------------
 """
-
+import tkinter as tk
+from tkinter import messagebox
 import matplotlib.pyplot as plt
+import ctypes
 
 class SupplyChainStatistics:
     
@@ -295,16 +297,21 @@ class SupplyChainStatistics:
         plt.subplots_adjust(top=0.92, bottom=0.08, left=0.10, right=0.95, hspace=0.25,
                             wspace=0.35)
         
+        #Shows a message
+        root = tk.Tk()
+        root.withdraw()
+        messagebox.showinfo('User Info', 'Press "CRTL + F" to leave full screen mode')
+
         #Makes the image full screen,use CRTL + f to get out
         mng = plt.get_current_fig_manager()
         mng.full_screen_toggle()
         
-        #Use these statements when using Linux
+        #Use these statements when using Linux to maximize the Window
         """
         mng = plt.get_current_fig_manager()
         mng.resize(*mng.window.maxsize())
         """
-        #When using Windows take the two statments below instead of the two above 
+        #Use these statements when using Windows to maximize the Window
         """
         mng = plt.get_current_fig_manager()
         mng.frame.Maximize(True)
