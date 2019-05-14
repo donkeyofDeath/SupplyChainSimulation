@@ -80,7 +80,7 @@ class Factory(SupplyChainActor):
         
         return
      
-    def TakeTurn(self, weekNum):
+    def takeTurn(self, weekNum):
         
         #The steps for taking a turn are as follows:
         

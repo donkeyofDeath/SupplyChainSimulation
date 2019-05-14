@@ -47,7 +47,7 @@ class Retailer(SupplyChainActor):
         self.currentOrders += self.customer.calculateOrder(weekNum)
         return
     
-    def ShipOutgoingDeliveryToCustomer(self):
+    def shipOutgoingDeliveryToCustomer(self):
         """
         -------------------------------------------------------
         Ships an order from the customer.
@@ -61,7 +61,7 @@ class Retailer(SupplyChainActor):
         self.customer.recieveFromRetailer(self.calcBeerToDeliver())
         return
     
-    def TakeTurn(self, weekNum):
+    def takeTurn(self, weekNum):
         
         #The steps for taking a turn are as follows:
         
