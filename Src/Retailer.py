@@ -34,7 +34,7 @@ class Retailer(SupplyChainActor):
 
         return
     
-    def ReceiveIncomingOrderFromCustomer(self, weekNum):
+    def receiveIncomingOrderFromCustomer(self, weekNum):
         """
         -------------------------------------------------------
         Receives an order from the customer.
@@ -44,7 +44,7 @@ class Retailer(SupplyChainActor):
             Adds the customer's order to the current orders.
         -------------------------------------------------------
         """
-        self.currentOrders += self.customer.CalculateOrder(weekNum)
+        self.currentOrders += self.customer.calculateOrder(weekNum)
         return
     
     def ShipOutgoingDeliveryToCustomer(self):
@@ -58,7 +58,7 @@ class Retailer(SupplyChainActor):
             total beer received. 
         -------------------------------------------------------
         """
-        self.customer.RecieveFromRetailer(self.CalcBeerToDeliver())
+        self.customer.recieveFromRetailer(self.calcBeerToDeliver())
         return
     
     def TakeTurn(self, weekNum):
@@ -66,22 +66,22 @@ class Retailer(SupplyChainActor):
         #The steps for taking a turn are as follows:
         
         #RECEIVE NEW DELIVERY FROM WHOLESALER
-        self.ReceiveIncomingDelivery()    #This also advances the queue!
+        self.receiveIncomingDelivery()    #This also advances the queue!
         
         #RECEIVE NEW ORDER FROM CUSTOMER
-        self.ReceiveIncomingOrderFromCustomer(weekNum)
+        self.receiveIncomingOrderFromCustomer(weekNum)
         
         #CALCULATE AMOUNT TO BE SHIPPED, THEN SHIP IT
         #self.ShipOutgoingDeliveryToCustomer()
         if weekNum <= 4:
-            self.customer.RecieveFromRetailer(4)
+            self.customer.recieveFromRetailer(4)
         else:
-            self.customer.RecieveFromRetailer(self.CalcBeerToDeliver())
+            self.customer.recieveFromRetailer(self.calcBeerToDeliver())
         
         #PLACE ORDER TO WHOLESALER
-        self.PlaceOutgoingOrder(weekNum)
+        self.placeOutgoingOrder(weekNum)
         
         #UPDATE COSTS
-        self.costsIncurred += self.CalcCostForTurn()
+        self.costsIncurred += self.calcCostForTurn()
         
         return

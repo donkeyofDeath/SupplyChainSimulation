@@ -30,7 +30,7 @@ class SupplyChainQueue():
         self.data = []
         return
     
-    def PushEnvelope(self, numberOfCasesToOrder):
+    def pushEnvelope(self, numberOfCasesToOrder):
         """
         -------------------------------------------------------
         Places an order/delivery into the supply chain queue.
@@ -49,7 +49,7 @@ class SupplyChainQueue():
             
         return orderSuccessfullyPlaced
     
-    def AdvanceQueue(self):
+    def advanceQueue(self):
         """
         -------------------------------------------------------
         This utility function advances the queue. This mechanism
@@ -63,7 +63,7 @@ class SupplyChainQueue():
         self.data.pop(0)
         return
     
-    def PopEnvelope(self):
+    def popEnvelope(self):
         """
         -------------------------------------------------------
         Returns the beer order in the queue.
@@ -76,13 +76,13 @@ class SupplyChainQueue():
         """
         if len(self.data) >= 1:
             quantityDelivered = self.data[0]
-            self.AdvanceQueue()
+            self.advanceQueue()
         else:
             quantityDelivered = 0
          
         return quantityDelivered
     
-    def PrettyPrint(self):
+    def prettyPrint(self):
         """
         -------------------------------------------------------
         Pretty prints the queue.

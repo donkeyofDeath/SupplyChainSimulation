@@ -26,7 +26,7 @@ class Customer:
         self.ordersGivenThisWeek = 0
         return
     
-    def RecieveFromRetailer(self, amountReceived):
+    def recieveFromRetailer(self, amountReceived):
         """
         -------------------------------------------------------
         Receives stock from the retailer.
@@ -41,7 +41,7 @@ class Customer:
         
         return
     
-    def CalculateOrder(self, weekNum):
+    def calculateOrder(self, weekNum):
         """
         -------------------------------------------------------
         Calculates the amount of stock to order from the retailer.
@@ -59,7 +59,7 @@ class Customer:
         self.ordersGivenThisWeek=result
         return result
     
-    def GetBeerReceived(self):
+    def getBeerReceived(self):
         """
         -------------------------------------------------------
         Returns the total beer received by the customer.
@@ -70,7 +70,7 @@ class Customer:
         """
         return self.totalBeerReceived
 
-    def GetOrdersGivenThisWeek(self):
+    def getOrdersGivenThisWeek(self):
         """
         -------------------------------------------------------
         Returns the orders given this weeek.

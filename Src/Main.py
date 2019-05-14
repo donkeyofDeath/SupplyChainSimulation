@@ -45,12 +45,12 @@ Each queue should have at least 2 orders of size CUSTOMER_INITIAL_ORDER
 -------------------------------------------------------
 """
 for i in range(0,2):
-    wholesalerRetailerTopQueue.PushEnvelope(CUSTOMER_INITIAL_ORDERS)
-    wholesalerRetailerBottomQueue.PushEnvelope(CUSTOMER_INITIAL_ORDERS)
-    distributorWholesalerTopQueue.PushEnvelope(CUSTOMER_INITIAL_ORDERS)
-    distributorWholesalerBottomQueue.PushEnvelope(CUSTOMER_INITIAL_ORDERS)
-    factoryDistributorTopQueue.PushEnvelope(CUSTOMER_INITIAL_ORDERS)
-    factoryDistributorBottomQueue.PushEnvelope(CUSTOMER_INITIAL_ORDERS)
+    wholesalerRetailerTopQueue.pushEnvelope(CUSTOMER_INITIAL_ORDERS)
+    wholesalerRetailerBottomQueue.pushEnvelope(CUSTOMER_INITIAL_ORDERS)
+    distributorWholesalerTopQueue.pushEnvelope(CUSTOMER_INITIAL_ORDERS)
+    distributorWholesalerBottomQueue.pushEnvelope(CUSTOMER_INITIAL_ORDERS)
+    factoryDistributorTopQueue.pushEnvelope(CUSTOMER_INITIAL_ORDERS)
+    factoryDistributorBottomQueue.pushEnvelope(CUSTOMER_INITIAL_ORDERS)
 
 """
 -------------------------------------------------------
@@ -83,38 +83,38 @@ for thisWeek in range(0, WEEKS_TO_PLAY):
     
     print("--- Week {0} ---".format(thisWeek))
     
-    myStats.RecordCustomerOrders(theCustomer.GetOrdersGivenThisWeek())
+    myStats.recordCustomerOrders(theCustomer.getOrdersGivenThisWeek())
 
     #Retailer takes turn, update stats
-    myRetailer.TakeTurn(thisWeek)
-    myStats.RecordRetailerCost(myRetailer.GetCostIncurred())
-    myStats.RecordRetailerOrders(myRetailer.GetLastOrderQuantity())
-    myStats.RecordRetailerEffectiveInventory(myRetailer.CalcEffectiveInventory())
+    myRetailer.takeTurn(thisWeek)
+    myStats.recordRetailerCost(myRetailer.getCostIncurred())
+    myStats.recordRetailerOrders(myRetailer.getLastOrderQuantity())
+    myStats.recordRetailerEffectiveInventory(myRetailer.calcEffectiveInventory())
     print("Retailer Complete")
     
     #Wholesaler takes turn, update stats
-    myWholesaler.TakeTurn(thisWeek)
-    myStats.RecordWholesalerCost(myWholesaler.GetCostIncurred())
-    myStats.RecordWholesalerOrders(myWholesaler.GetLastOrderQuantity())
-    myStats.RecordWholesalerEffectiveInventory(myWholesaler.CalcEffectiveInventory())
+    myWholesaler.takeTurn(thisWeek)
+    myStats.recordWholesalerCost(myWholesaler.getCostIncurred())
+    myStats.recordWholesalerOrders(myWholesaler.getLastOrderQuantity())
+    myStats.recordWholesalerEffectiveInventory(myWholesaler.calcEffectiveInventory())
     print("Wholesaler Complete")
     
     #Distributor takes turn, update stats
-    myDistributor.TakeTurn(thisWeek)
-    myStats.RecordDistributorCost(myDistributor.GetCostIncurred())
-    myStats.RecordDistributorOrders(myDistributor.GetLastOrderQuantity())
-    myStats.RecordDistributorEffectiveInventory(myDistributor.CalcEffectiveInventory())
+    myDistributor.takeTurn(thisWeek)
+    myStats.recordDistributorCost(myDistributor.getCostIncurred())
+    myStats.recordDistributorOrders(myDistributor.getLastOrderQuantity())
+    myStats.recordDistributorEffectiveInventory(myDistributor.calcEffectiveInventory())
     print("Distributor Complete")
     
     #Factory takes turn, update stats
-    myFactory.TakeTurn(thisWeek)
-    myStats.RecordFactoryCost(myFactory.GetCostIncurred())
-    myStats.RecordFactoryOrders(myFactory.GetLastOrderQuantity())
-    myStats.RecordFactoryEffectiveInventory(myFactory.CalcEffectiveInventory())
+    myFactory.takeTurn(thisWeek)
+    myStats.recordFactoryCost(myFactory.getCostIncurred())
+    myStats.recordFactoryOrders(myFactory.getLastOrderQuantity())
+    myStats.recordFactoryEffectiveInventory(myFactory.calcEffectiveInventory())
     print("Factory Complete")
 
 print("--- Final Statistics ----")
-print("Beer received by customer: {0}".format(theCustomer.GetBeerReceived()))
+print("Beer received by customer: {0}".format(theCustomer.getBeerReceived()))
 """
 myStats.PlotCosts()
 myStats.PlotOrders()

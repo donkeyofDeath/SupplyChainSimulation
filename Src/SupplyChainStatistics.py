@@ -35,11 +35,11 @@ class SupplyChainStatistics:
         
         return
     
-    def RecordCustomerOrders(self, customerOrdersThisWeek):
+    def recordCustomerOrders(self, customerOrdersThisWeek):
         self.customerOrdersOverTime.append(customerOrdersThisWeek)
         return
 
-    def RecordRetailerOrders(self, retailerOrdersThisWeek):
+    def recordRetailerOrders(self, retailerOrdersThisWeek):
         """
         -------------------------------------------------------
         Adds a weekly order to the retailer's record.
@@ -54,7 +54,7 @@ class SupplyChainStatistics:
         self.retailerOrdersOverTime.append(retailerOrdersThisWeek)
         return
     
-    def RecordWholesalerOrders(self, wholesalerOrdersThisWeek):
+    def recordWholesalerOrders(self, wholesalerOrdersThisWeek):
         """
         -------------------------------------------------------
         Adds a weekly order to the wholesaler's record.
@@ -69,7 +69,7 @@ class SupplyChainStatistics:
         self.wholesalerOrdersOverTime.append(wholesalerOrdersThisWeek)
         return
     
-    def RecordDistributorOrders(self, distributorOrdersThisWeek):
+    def recordDistributorOrders(self, distributorOrdersThisWeek):
         """
         -------------------------------------------------------
         Adds a weekly order to the distributor's record.
@@ -84,7 +84,7 @@ class SupplyChainStatistics:
         self.distributorOrdersOverTime.append(distributorOrdersThisWeek)
         return
     
-    def RecordFactoryOrders(self, factoryOrdersThisWeek):
+    def recordFactoryOrders(self, factoryOrdersThisWeek):
         """
         -------------------------------------------------------
         Adds a weekly order to the factory's record.
@@ -99,7 +99,7 @@ class SupplyChainStatistics:
         self.factoryOrdersOverTime.append(factoryOrdersThisWeek)
         return
     
-    def RecordRetailerCost(self, retailerCostsThisWeek):
+    def recordRetailerCost(self, retailerCostsThisWeek):
         """
         -------------------------------------------------------
         Adds a weekly cost to the retailer's record.
@@ -114,7 +114,7 @@ class SupplyChainStatistics:
         self.retailerCostsOverTime.append(retailerCostsThisWeek)
         return
     
-    def RecordWholesalerCost(self, wholesalerCostsThisWeek):
+    def recordWholesalerCost(self, wholesalerCostsThisWeek):
         """
         -------------------------------------------------------
         Adds a weekly cost to the wholesaler's record.
@@ -129,7 +129,7 @@ class SupplyChainStatistics:
         self.wholesalerCostsOverTime.append(wholesalerCostsThisWeek)
         return
     
-    def RecordDistributorCost(self, distributorCostsThisWeek):
+    def recordDistributorCost(self, distributorCostsThisWeek):
         """
         -------------------------------------------------------
         Adds a weekly cost to the distributor's record.
@@ -144,7 +144,7 @@ class SupplyChainStatistics:
         self.distributorCostsOverTime.append(distributorCostsThisWeek)
         return
     
-    def RecordFactoryCost(self, factoryCostsThisWeek):
+    def recordFactoryCost(self, factoryCostsThisWeek):
         """
         -------------------------------------------------------
         Adds a weekly cost to the factory's record.
@@ -159,7 +159,7 @@ class SupplyChainStatistics:
         self.factoryCostsOverTime.append(factoryCostsThisWeek)
         return
     
-    def RecordRetailerEffectiveInventory(self, retailerEffectiveInventoryThisWeek):
+    def recordRetailerEffectiveInventory(self, retailerEffectiveInventoryThisWeek):
         """
         -------------------------------------------------------
         Adds weekly effective inventory to the wholesaler's record.
@@ -174,7 +174,7 @@ class SupplyChainStatistics:
         self.retailerEffectiveInventoryOverTime.append(retailerEffectiveInventoryThisWeek)
         return
     
-    def RecordWholesalerEffectiveInventory(self, wholesalerEffectiveInventoryThisWeek):
+    def recordWholesalerEffectiveInventory(self, wholesalerEffectiveInventoryThisWeek):
         """
         -------------------------------------------------------
         Adds weekly effective inventory to the wholesaler's record.
@@ -189,7 +189,7 @@ class SupplyChainStatistics:
         self.wholesalerEffectiveInventoryOverTime.append(wholesalerEffectiveInventoryThisWeek)
         return
     
-    def RecordDistributorEffectiveInventory(self, distributorEffectiveInventoryThisWeek):
+    def recordDistributorEffectiveInventory(self, distributorEffectiveInventoryThisWeek):
         """
         -------------------------------------------------------
         Adds weekly effective inventory to the distributor's record.
@@ -204,7 +204,7 @@ class SupplyChainStatistics:
         self.distributorEffectiveInventoryOverTime.append(distributorEffectiveInventoryThisWeek)
         return
     
-    def RecordFactoryEffectiveInventory(self, factoryEffectiveInventoryThisWeek):
+    def recordFactoryEffectiveInventory(self, factoryEffectiveInventoryThisWeek):
         """
         -------------------------------------------------------
         Adds weekly effective inventory to the factory's record.
@@ -219,7 +219,7 @@ class SupplyChainStatistics:
         self.factoryEffectiveInventoryOverTime.append(factoryEffectiveInventoryThisWeek)
         return
     
-    def PlotCosts(self):
+    def plotCosts(self):
         """
         -------------------------------------------------------
         Graphs the costs of each supply chain actor.
@@ -238,7 +238,7 @@ class SupplyChainStatistics:
         plt.xlabel("Wochennummer")
         plt.grid(True)
     
-    def PlotOrders(self):
+    def plotOrders(self):
         """
         -------------------------------------------------------
         Graphs the orders of each supply chain actor.
@@ -259,7 +259,7 @@ class SupplyChainStatistics:
         plt.grid(True)
 
     
-    def PlotEffectiveInventory(self):
+    def plotEffectiveInventory(self):
         """
         -------------------------------------------------------
         Graphs the effective inventory of each supply chain actor.
@@ -282,13 +282,13 @@ class SupplyChainStatistics:
         plt.figure(1)
 
         plt.subplot(221)
-        self.PlotOrders()
+        self.plotOrders()
 
         plt.subplot(222)
-        self.PlotEffectiveInventory()
+        self.plotEffectiveInventory()
 
         plt.subplot(223)
-        self.PlotCosts()
+        self.plotCosts()
 
         # Adjust the subplot layout, because the logit one may take more space
         # than usual, due to y-tick labels like "1 - 10^{-3}"

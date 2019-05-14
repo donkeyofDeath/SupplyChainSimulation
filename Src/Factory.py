@@ -32,11 +32,11 @@ class Factory(SupplyChainActor):
         self.BeerProductionDelayQueue = SupplyChainQueue(productionDelayWeeks)
         
         #We assume that the factory already has some runs in production. This is in the rules, and ensures initial stability.
-        self.BeerProductionDelayQueue.PushEnvelope(CUSTOMER_INITIAL_ORDERS)
-        self.BeerProductionDelayQueue.PushEnvelope(CUSTOMER_INITIAL_ORDERS)
+        self.BeerProductionDelayQueue.pushEnvelope(CUSTOMER_INITIAL_ORDERS)
+        self.BeerProductionDelayQueue.pushEnvelope(CUSTOMER_INITIAL_ORDERS)
         return
     
-    def ProduceBeer(self, weekNum):
+    def produceBeer(self, weekNum):
         """
         -------------------------------------------------------
         Calculates the size of this week's production run.
@@ -57,12 +57,12 @@ class Factory(SupplyChainActor):
             if (TARGET_STOCK - self.currentStock) > 0:
                 amountToOrder += TARGET_STOCK - self.currentStock
             
-        self.BeerProductionDelayQueue.PushEnvelope(amountToOrder)
+        self.BeerProductionDelayQueue.pushEnvelope(amountToOrder)
         self.lastOrderQuantity = amountToOrder
         
         return
     
-    def FinishProduction(self):
+    def finishProduction(self):
         """
         -------------------------------------------------------
         Finishes production by popping the production queue and
@@ -73,7 +73,7 @@ class Factory(SupplyChainActor):
             that the factory just brewed.
         -------------------------------------------------------
         """
-        amountProduced = self.BeerProductionDelayQueue.PopEnvelope()
+        amountProduced = self.BeerProductionDelayQueue.popEnvelope()
         
         if amountProduced > 0:
             self.currentStock += amountProduced
@@ -85,21 +85,21 @@ class Factory(SupplyChainActor):
         #The steps for taking a turn are as follows:
         
         #PREVIOUS PRODUCTION RUNS FINISH BREWING.
-        self.FinishProduction()
+        self.finishProduction()
         
         #RECEIVE NEW ORDER FROM DISTRIBUTOR
-        self.ReceiveIncomingOrders()     #This also advances the queue!
+        self.receiveIncomingOrders()     #This also advances the queue!
         
         #PREPARE DELIVERY
         if weekNum <= 4:
-            self.PlaceOutgoingDelivery(4)
+            self.placeOutgoingDelivery(4)
         else:
-            self.PlaceOutgoingDelivery(self.CalcBeerToDeliver())
+            self.placeOutgoingDelivery(self.calcBeerToDeliver())
         
         #PRODUCE BEER
-        self.ProduceBeer(weekNum)
+        self.produceBeer(weekNum)
         
         #UPDATE COSTS
-        self.costsIncurred += self.CalcCostForTurn()
+        self.costsIncurred += self.calcCostForTurn()
         
         return

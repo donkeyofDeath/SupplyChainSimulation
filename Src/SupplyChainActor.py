@@ -43,7 +43,7 @@ class SupplyChainActor:
         
         return
     
-    def PlaceOutgoingDelivery(self, amountToDeliver):
+    def placeOutgoingDelivery(self, amountToDeliver):
         """
         -------------------------------------------------------
         Places a delivery to the actor one level higher in the supply
@@ -56,10 +56,10 @@ class SupplyChainActor:
             of the queues is handled by the main program.
         -------------------------------------------------------
         """
-        self.outgoingDeliveriesQueue.PushEnvelope(amountToDeliver)
+        self.outgoingDeliveriesQueue.pushEnvelope(amountToDeliver)
         return
     
-    def PlaceOutgoingOrder(self, weekNum):
+    def placeOutgoingOrder(self, weekNum):
         """
         -------------------------------------------------------
         Calculates the size of the weekly outgoing order.
@@ -82,12 +82,12 @@ class SupplyChainActor:
             if (TARGET_STOCK - self.currentStock) > 0:
                 amountToOrder += TARGET_STOCK - self.currentStock
             
-        self.outgoingOrdersQueue.PushEnvelope(amountToOrder)
+        self.outgoingOrdersQueue.pushEnvelope(amountToOrder)
         self.lastOrderQuantity = amountToOrder
         
         return
     
-    def ReceiveIncomingDelivery(self):
+    def receiveIncomingDelivery(self):
         """
         -------------------------------------------------------
         Receives a delivery from the actor one level lower in
@@ -100,14 +100,14 @@ class SupplyChainActor:
             deliveries queue.
         -------------------------------------------------------
         """
-        quantityReceived = self.incomingDeliveriesQueue.PopEnvelope()
+        quantityReceived = self.incomingDeliveriesQueue.popEnvelope()
         
         if quantityReceived > 0:
             self.currentStock += quantityReceived
                 
         return
     
-    def ReceiveIncomingOrders(self):
+    def receiveIncomingOrders(self):
         """
         -------------------------------------------------------
         Receives an incoming order from from the actor one level higher in
@@ -120,13 +120,13 @@ class SupplyChainActor:
             deliveries queue.
         -------------------------------------------------------
         """
-        thisOrder = self.incomingOrdersQueue.PopEnvelope()
+        thisOrder = self.incomingOrdersQueue.popEnvelope()
         
         if thisOrder > 0:
             self.currentOrders += thisOrder
         return
     
-    def CalcBeerToDeliver(self):
+    def calcBeerToDeliver(self):
         """
         -------------------------------------------------------
         Calculates how much beer to deliver to the customer. The
@@ -156,7 +156,7 @@ class SupplyChainActor:
 
         return deliveryQuantity
     
-    def CalcCostForTurn(self):
+    def calcCostForTurn(self):
         """
         -------------------------------------------------------
         This function calculates the total costs incurred for the
@@ -178,7 +178,7 @@ class SupplyChainActor:
         
         return costsThisTurn
     
-    def GetCostIncurred(self):
+    def getCostIncurred(self):
         """
         -------------------------------------------------------
         Returns the total costs incurred. 
@@ -189,7 +189,7 @@ class SupplyChainActor:
         """
         return self.costsIncurred
     
-    def GetLastOrderQuantity(self):
+    def getLastOrderQuantity(self):
         """
         -------------------------------------------------------
         Returns the quantity of the last order made. 
@@ -200,7 +200,7 @@ class SupplyChainActor:
         """
         return self.lastOrderQuantity
     
-    def CalcEffectiveInventory(self):
+    def calcEffectiveInventory(self):
         """
         -------------------------------------------------------
         Returns the effective inventory of the calling SupplyChainActor
