@@ -37,7 +37,6 @@ CUSTOMER_SUBSEQUENT_ORDERS_2 = 20
 #This is only needed in the calculateAmountToOrder function
 TARGET_STOCK = 40
 
-
 def calculateAmountToOrder(incomingOrder, stock, weekNum):
     #First weeks are in equilibrium
     targetStock=TARGET_STOCK

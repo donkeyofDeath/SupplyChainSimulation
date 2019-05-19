@@ -27,6 +27,23 @@ class Wholesaler(SupplyChainActor):
         super().__init__(incomingOrdersQueue, outgoingOrdersQueue, incomingDeliveriesQueue, outgoingDeliveriesQueue)
         return
     
+    def placeOutgoingOrder(self, weekNum):
+        """
+        -------------------------------------------------------
+        Calculates the size of the weekly outgoing order.
+        -------------------------------------------------------
+        Preconditions: weekNum - the current week number.
+        Postconditions:
+            Calculates the order quantity using an anchor and maintain
+            strategy.
+        -------------------------------------------------------
+        """
+        #calculateAmountToOrder can be found in Settings.py
+        amountToOrder=calculateAmountToOrder(self.currentOrders, self.currentStock, weekNum)
+        self.outgoingOrdersQueue.pushEnvelope(amountToOrder)
+        self.lastOrderQuantity = amountToOrder
+        return
+
     def takeTurn(self, weekNum):
         
         #The steps for taking a turn are as follows:

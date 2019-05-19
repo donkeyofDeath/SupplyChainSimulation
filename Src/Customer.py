@@ -24,6 +24,7 @@ class Customer:
         """
         self.totalBeerReceived = 0
         self.ordersGivenThisWeek = 0
+        self.ordersGivenLastWeek = 0
         return
     
     def recieveFromRetailer(self, amountReceived):
@@ -52,6 +53,7 @@ class Customer:
             for all other weeks. 
         -------------------------------------------------------
         """
+        self.ordersGivenLastWeek=self.ordersGivenThisWeek
         if weekNum == WEEK_TO_RAISE_ORDER_1:
             result = CUSTOMER_SUBSEQUENT_ORDERS_1
         elif weekNum == WEEK_TO_RAISE_ORDER_2:

@@ -10,10 +10,11 @@ Version: February 7th 2016
 
 from Settings import *
 from SupplyChainQueue import SupplyChainQueue
+from Customer import Customer
 
 class SupplyChainActor:
     
-    def __init__(self, incomingOrdersQueue, outgoingOrdersQueue, incomingDeliveriesQueue, outgoingDeliveriesQueue):
+    def __init__(self, incomingOrdersQueue, outgoingOrdersQueue, incomingDeliveriesQueue, outgoingDeliveriesQueue, customer):
         """
         -------------------------------------------------------
         Constructor for the SupplyChainActor class. All other
@@ -40,7 +41,7 @@ class SupplyChainActor:
         self.outgoingDeliveriesQueue = outgoingDeliveriesQueue
         
         self.lastOrderQuantity = 0
-        
+        self.costumer = theCustomer
         return
     
     def placeOutgoingDelivery(self, amountToDeliver):
@@ -57,24 +58,6 @@ class SupplyChainActor:
         -------------------------------------------------------
         """
         self.outgoingDeliveriesQueue.pushEnvelope(amountToDeliver)
-        return
-    
-    def placeOutgoingOrder(self, weekNum):
-        """
-        -------------------------------------------------------
-        Calculates the size of the weekly outgoing order.
-        -------------------------------------------------------
-        Preconditions: weekNum - the current week number.
-        Postconditions:
-            Calculates the order quantity using an anchor and maintain
-            strategy.
-        -------------------------------------------------------
-        """
-        #calculateAmountToOrder can be found in Settings.py
-        amountToOrder=calculateAmountToOrder(self.currentOrders, self.currentStock, weekNum)
-        self.outgoingOrdersQueue.pushEnvelope(amountToOrder)
-        self.lastOrderQuantity = amountToOrder
-        
         return
     
     def receiveIncomingDelivery(self):
