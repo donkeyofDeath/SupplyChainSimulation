@@ -14,7 +14,7 @@ from SupplyChainQueue import SupplyChainQueue
 
 class Factory(SupplyChainActor):
     
-    def __init__(self, incomingOrdersQueue, outgoingOrdersQueue, incomingDeliveriesQueue, outgoingDeliveriesQueue, productionDelayWeeks):
+    def __init__(self, incomingOrdersQueue, outgoingOrdersQueue, incomingDeliveriesQueue, outgoingDeliveriesQueue, productionDelayWeeks, theCustomer):
         """
         -------------------------------------------------------
         Constructor for the Factory class.
@@ -30,7 +30,7 @@ class Factory(SupplyChainActor):
         """
         super().__init__(incomingOrdersQueue, outgoingOrdersQueue, incomingDeliveriesQueue, outgoingDeliveriesQueue)
         self.BeerProductionDelayQueue = SupplyChainQueue(productionDelayWeeks)
-        
+        self.customer = theCustomer
         #We assume that the factory already has some runs in production. This is in the rules, and ensures initial stability.
         self.BeerProductionDelayQueue.pushEnvelope(CUSTOMER_INITIAL_ORDERS)
         self.BeerProductionDelayQueue.pushEnvelope(CUSTOMER_INITIAL_ORDERS)

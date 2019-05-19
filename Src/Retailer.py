@@ -63,6 +63,14 @@ class Retailer(SupplyChainActor):
         return
 
     def placeOutgoingOrder(self, weekNum):
+        
+        customerOrder = self.customer.getOrdersGivenThisWeek()
+        customerOrderLastWeek = self.customer.getOrdersGivenLastWeek()
+        customerDelta = customerOrderLastWeek - customerOrder
+        
+        if customerDelta > 0:
+            targetStock = 3*customerOrder
+
         """
         -------------------------------------------------------
         Calculates the size of the weekly outgoing order.

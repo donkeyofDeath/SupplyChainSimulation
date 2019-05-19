@@ -9,10 +9,11 @@ Version: February 7th 2016
 """
 from Settings import *
 from SupplyChainActor import SupplyChainActor
+from Customer import Customer
 
 class Wholesaler(SupplyChainActor):
     
-    def __init__(self, incomingOrdersQueue, outgoingOrdersQueue, incomingDeliveriesQueue, outgoingDeliveriesQueue):
+    def __init__(self, incomingOrdersQueue, outgoingOrdersQueue, incomingDeliveriesQueue, outgoingDeliveriesQueue, theCustomer):
         """
         -------------------------------------------------------
         Constructor for the Wholesaler class.
@@ -25,6 +26,8 @@ class Wholesaler(SupplyChainActor):
         -------------------------------------------------------
         """
         super().__init__(incomingOrdersQueue, outgoingOrdersQueue, incomingDeliveriesQueue, outgoingDeliveriesQueue)
+        customer = theCustomer
+        
         return
     
     def placeOutgoingOrder(self, weekNum):

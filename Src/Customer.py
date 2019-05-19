@@ -84,3 +84,6 @@ class Customer:
         -------------------------------------------------------
         """
         return self.ordersGivenThisWeek
+
+    def getOrdersGivenLastWeek(self):
+        return self.ordersGivenLastWeek

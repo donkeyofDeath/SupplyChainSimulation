@@ -10,11 +10,10 @@ Version: February 7th 2016
 
 from Settings import *
 from SupplyChainQueue import SupplyChainQueue
-from Customer import Customer
 
 class SupplyChainActor:
     
-    def __init__(self, incomingOrdersQueue, outgoingOrdersQueue, incomingDeliveriesQueue, outgoingDeliveriesQueue, customer):
+    def __init__(self, incomingOrdersQueue, outgoingOrdersQueue, incomingDeliveriesQueue, outgoingDeliveriesQueue):
         """
         -------------------------------------------------------
         Constructor for the SupplyChainActor class. All other
@@ -41,7 +40,6 @@ class SupplyChainActor:
         self.outgoingDeliveriesQueue = outgoingDeliveriesQueue
         
         self.lastOrderQuantity = 0
-        self.costumer = theCustomer
         return
     
     def placeOutgoingDelivery(self, amountToDeliver):
