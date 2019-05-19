@@ -38,10 +38,12 @@ class Wholesaler(SupplyChainActor):
         self.receiveIncomingOrders()     #This also advances the queue!
         
         #PREPARE DELIVERY
+        """
         if weekNum <= WEEK_TO_RAISE_ORDER:
             self.placeOutgoingDelivery(4)
         else:
-            self.placeOutgoingDelivery(self.calcBeerToDeliver())
+        """
+        self.placeOutgoingDelivery(self.calcBeerToDeliver())
         
         #PLACE ORDER
         self.placeOutgoingOrder(weekNum)

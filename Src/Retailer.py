@@ -74,10 +74,12 @@ class Retailer(SupplyChainActor):
         
         #CALCULATE AMOUNT TO BE SHIPPED, THEN SHIP IT
         #self.ShipOutgoingDeliveryToCustomer()
+        """
         if weekNum <= WEEK_TO_RAISE_ORDER:
             self.customer.recieveFromRetailer(4)
         else:
-            self.customer.recieveFromRetailer(self.calcBeerToDeliver())
+        """
+        self.customer.recieveFromRetailer(self.calcBeerToDeliver())
         
         #PLACE ORDER TO WHOLESALER
         self.placeOutgoingOrder(weekNum)

@@ -52,10 +52,12 @@ class Customer:
             for all other weeks. 
         -------------------------------------------------------
         """
-        if weekNum <= WEEK_TO_RAISE_ORDER +1:
-            result = CUSTOMER_INITIAL_ORDERS
+        if weekNum == WEEK_TO_RAISE_ORDER_1:
+            result = CUSTOMER_SUBSEQUENT_ORDERS_1
+        elif weekNum == WEEK_TO_RAISE_ORDER_2:
+            result = CUSTOMER_SUBSEQUENT_ORDERS_2
         else:
-            result = CUSTOMER_SUBSEQUENT_ORDERS
+            result = CUSTOMER_INITIAL_ORDERS
         self.ordersGivenThisWeek=result
         return result
     

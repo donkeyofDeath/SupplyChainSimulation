@@ -113,7 +113,7 @@ for thisWeek in range(0, WEEKS_TO_PLAY):
     myStats.recordFactoryEffectiveInventory(myFactory.calcEffectiveInventory())
     #print("Factory Complete")
 
-print("--- Final Statistik ----")
+print("--- Finale Statistik ----")
 print("Vom Kunden erhaltene Biere: {0}".format(int(theCustomer.getBeerReceived())))
 print("Gesamtkosten der Lieferkette: %d €" % int(myRetailer.getCostIncurred()+myFactory.getCostIncurred()+myDistributor.getCostIncurred()+myWholesaler.getCostIncurred()))
 """
